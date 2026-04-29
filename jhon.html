@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jhon | Mensh Tatto</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.png" type="image/png">
+</head>
+<body class="profile-page">
+    <header>
+        <nav aria-label="Navegación principal">
+            <div class="logo"><a href="index.html"><img src="logofinal.png" alt="Mensh Tatto Logo"></a></div>
+            <div class="nav-right">
+                <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+                <ul class="nav-links">
+                    <li><a href="index.html#home">Inicio</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="piercing.html">Piercing</a></li>
+                    <li><a href="index.html#artists">Artistas</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main class="profile-main">
+        <img src="fondo jhon.jpeg" alt="Jhon" class="full-hero-img">
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Mensh Tatto Studio. Todos los derechos reservados. | 
+            <a href="politica-privacidad.html" style="color: inherit; text-decoration: underline;">Política de Privacidad</a> | 
+            <a href="politica-cookies.html" style="color: inherit; text-decoration: underline;">Política de Cookies</a> | 
+            <a href="https://setian130g-lab.github.io/CodeWithJoan.com/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">by sebas mejia</a>
+        </p>
+    </footer>
+
+    <script>
+        const menu = document.querySelector('#mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        if(menu) menu.addEventListener('click', () => navLinks.classList.toggle('active'));
+    </script>
+</body>
+</html>

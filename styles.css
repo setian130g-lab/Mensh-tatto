@@ -1,0 +1,437 @@
+/* General Body & HTML */
+:root {
+    --bg-dark: #0a0a0a;
+    --bg-card: #161616;
+    --accent: #e5e4e2; /* Gris Hueso */
+    --detail-red: #b30000; /* Rojo Detalle */
+    --text-main: #e0e0e0;
+    --text-muted: #a0a0a0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3 { /* .logo removed as it's an image now */
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 3px 3px 4px var(--detail-red);
+}
+
+header {
+    /* Se elimina la altura fija para que se ajuste al contenido */
+    padding: 2rem 5%; /* Se restaura el padding original */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 10, 0.9);
+    backdrop-filter: blur(5px);
+}
+
+nav {
+    display: flex; /* Contenedor flex para los elementos de navegación */
+    justify-content: space-between; /* Mantiene el espacio entre el menu-toggle y nav-right */
+    align-items: center;
+    width: 100%; /* Asegura que la barra de navegación ocupe todo el ancho disponible */
+}
+
+.menu-toggle {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-left: auto; /* Empuja este grupo de elementos a la derecha */
+}
+
+.logo {
+    position: absolute; /* Posicionamiento absoluto para que no afecte el flujo del nav */
+    left: 5%; /* Alineado con el padding izquierdo del header */
+    top: 50%; /* Centrado verticalmente */
+    transform: translateY(-50%); /* Ajuste para un centrado perfecto */
+    z-index: 1001; /* Asegura que el logo esté por encima de otros elementos */
+}
+
+.logo img {
+    max-height: 250px; /* Tamaño del logo aumentado para que destaque */
+    width: auto; /* Mantiene la relación de aspecto */
+    display: block; /* Asegura que la imagen se comporte como un bloque */
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin-left: 1.5rem;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: var(--text-main);
+    transition: color 0.3s;
+    font-size: 0.9rem;
+}
+
+.nav-links li a:hover {
+    color: var(--detail-red);
+}
+
+.social-links {
+    display: flex;
+    gap: 1.2rem;
+    border-left: 1px solid #333;
+    padding-left: 1.2rem;
+}
+
+.social-links a {
+    color: var(--text-main);
+    font-size: 1.2rem;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--detail-red);
+    transform: translateY(-2px);
+}
+
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&q=80') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: slideInLeft 1.2s ease-out forwards;
+}
+
+.hero p, .hero .btn-primary {
+    animation: slideInRight 1.2s ease-out forwards;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background-color: var(--accent);
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 2rem;
+    border-radius: 50px; /* Esquinas redondeadas */
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    background-color: var(--detail-red);
+    color: #fff;
+}
+
+.section {
+    padding: 100px 10%;
+}
+
+.section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--accent);
+}
+
+.dark-bg {
+    background-color: var(--bg-card);
+}
+
+.artists-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+    justify-content: center;
+}
+
+.artist-card {
+    background: var(--bg-dark);
+    padding: 30px;
+    text-align: center;
+    border: 1px solid #222;
+    border-radius: 20px;
+    transition: border-color 0.3s, transform 0.3s;
+}
+
+.artist-card:hover {
+    border-color: var(--detail-red);
+    transform: translateY(-5px);
+}
+
+.artist-img {
+    width: 180px;
+    height: 180px;
+    background: #333 url('https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&q=80');
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    background-size: cover;
+    background-position: center;
+}
+
+.grid-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.work-item {
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(100%);
+    border-radius: 20px;
+    transition: filter 0.5s, transform 0.5s;
+}
+
+.work-item:hover {
+    filter: grayscale(0%);
+    transform: scale(1.02);
+}
+
+#contact-form input, #contact-form textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: var(--bg-card);
+    border: 1px solid #333;
+    color: white;
+}
+
+.contact-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+}
+
+.info p {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.info p i {
+    color: #fff;
+    margin-right: 10px;
+}
+
+/* Estilos Widget Reseñas */
+.reviews-widget {
+    display: block;
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid #222;
+    text-align: center;
+    text-decoration: none;
+    min-width: 280px;
+    transition: border-color 0.3s;
+}
+
+.reviews-widget:hover {
+    border-color: var(--detail-red);
+}
+
+.reviews-widget .score {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--accent);
+    display: block;
+    line-height: 1;
+}
+
+.reviews-widget .stars {
+    color: #ffc107;
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+.btn-review {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--text-muted);
+    text-decoration: underline;
+    font-size: 0.8rem;
+    transition: color 0.3s;
+}
+
+.btn-review:hover {
+    color: var(--detail-red);
+}
+
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid #1a1a1a;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* Estilos para Galerías de Selección (Tatuajes y Piercings) */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content-card {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: flex-end;
+}
+
+.content-card:hover {
+    transform: translateY(-10px);
+}
+
+.content-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    filter: grayscale(40%) brightness(70%);
+    transition: filter 0.3s ease;
+}
+
+.content-card:hover img {
+    filter: grayscale(0%) brightness(90%);
+}
+
+.content-info {
+    position: relative;
+    z-index: 2;
+    padding: 2rem;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    color: white;
+}
+
+/* Variación para Instalaciones: Imagen más grande y texto debajo */
+.content-card.card-details {
+    flex-direction: column;
+    height: auto;
+    align-items: stretch;
+}
+
+.content-card.card-details img {
+    position: relative;
+    height: 480px; /* Aumentado de los 400px originales para que luzcan más grandes */
+}
+
+.content-card.card-details .content-info {
+    position: static;
+    background: none;
+}
+
+/* Animación para títulos de entrada */
+.animate-title {
+    animation: appear 1.2s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes slideInLeft {
+    0% { opacity: 0; transform: translateX(-100px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+    0% { opacity: 0; transform: translateX(100px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes appear {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2.5rem; }
+    .menu-toggle { display: block; }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.95);
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid #333;
+    }
+    .nav-links.active { display: flex; }
+    .nav-links li { margin: 15px 0; }
+    .social-links { 
+        border-left: none;
+        padding-left: 0;
+    }
+    .section { padding: 60px 5%; }
+    
+    .contact-wrapper {
+        flex-direction: column-reverse; /* Esto pone el widget arriba en móvil */
+        gap: 2rem;
+    }
+}
+
+/* Estilos específicos para la página de perfil de Jhon */
+body.profile-page {
+    background-color: #000;
+    margin: 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.profile-main {
+    padding: 0; /* Remove padding for full-bleed image */
+    display: block;
+    background-color: #000;
+    margin-top: 80px; /* Espacio para el header fijo de 80px */
+    width: 100%;
+}
+
+.full-hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}

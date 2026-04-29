@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piercing | Mensh Tatto</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dark-bg">
+    <header>
+        <nav aria-label="Navegación principal">
+            <div class="logo"><a href="index.html"><img src="logofinal.png" alt="Mensh Tatto Logo"></a></div>
+            <div class="nav-right">
+                <div class="menu-toggle" id="mobile-menu"><i class="fas fa-bars"></i></div>
+                <ul class="nav-links">
+                    <li><a href="index.html#home">Inicio</a></li>
+                    <li><a href="galeria.html">Galería</a></li>
+                    <li><a href="piercing.html">Piercing</a></li>
+                    <li><a href="index.html#artists">Artistas</a></li>
+                </ul>
+                <div class="social-links">
+                    <a href="https://wa.me/34624386417" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/menshtatto_29/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/people/MENSH-TATTO/100089877352983/#" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="section">
+        <h2 class="animate-title" style="text-align: center; margin-top: 50px;">Tipos de Piercing</h2>
+        <div class="content-grid">
+            <div class="content-card">
+                <img src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?auto=format&fit=crop&q=80" alt="Oreja">
+                <div class="content-info"><h3>Oreja</h3></div>
+            </div>
+            <div class="content-card">
+                <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&q=80" alt="Nariz">
+                <div class="content-info"><h3>Nariz</h3></div>
+            </div>
+            <div class="content-card">
+                <img src="https://images.unsplash.com/photo-1590424753858-394a12a5ec9c?auto=format&fit=crop&q=80" alt="Boca">
+                <div class="content-info"><h3>Boca</h3></div>
+            </div>
+            <div class="content-card">
+                <img src="https://images.unsplash.com/photo-1562157705-52c44bc14d6b?auto=format&fit=crop&q=80" alt="Cuerpo">
+                <div class="content-info"><h3>Cuerpo</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mensh Tatto Studio. Todos los derechos reservados. | 
+            <a href="politica-privacidad.html" style="color: inherit; text-decoration: underline;">Política de Privacidad</a> | 
+            <a href="politica-cookies.html" style="color: inherit; text-decoration: underline;">Política de Cookies</a> | 
+            <a href="https://setian130g-lab.github.io/CodeWithJoan.com/" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: underline;">by sebas mejia</a>
+        </p>
+    </footer>
+
+    <script>
+        // Reusable function for tap behavior
+        function setupTapBehavior(elements, getLinkFn) {
+            let lastTap = 0;
+            const DOUBLE_TAP_DELAY = 300; // milliseconds
+
+            elements.forEach(element => {
+                element.addEventListener('touchend', function(e) {
+                    const currentTime = new Date().getTime();
+                    const tapLength = currentTime - lastTap;
+
+                    if (tapLength < DOUBLE_TAP_DELAY && tapLength > 0) {
+                        // Double tap detected
+                        e.preventDefault(); // Prevent default click/navigation
+                        clearTimeout(this.tapTimer); // Clear any pending single tap
+                        const link = getLinkFn(this);
+                        if (link) {
+                            window.open(link, '_blank');
+                        }
+                        lastTap = 0; // Reset for next tap sequence
+                    } else {
+                        // Single tap detected (or start of a new tap sequence)
+                        this.tapTimer = setTimeout(() => {
+                            this.classList.toggle('color-mode');
+                            lastTap = 0; // Reset for next tap sequence
+                        }, DOUBLE_TAP_DELAY);
+                        lastTap = currentTime;
+                    }
+                });
+            });
+        }
+        const menu = document.querySelector('#mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+        menu.addEventListener('click', () => navLinks.classList.toggle('active'));
+
+        // Apply tap behavior to gallery images
+        const galleryImagesGaleria = document.querySelectorAll('.content-grid .content-card img');
+        setupTapBehavior(galleryImagesGaleria, (element) => element.src);
+    </script>
+</body>
+</html>
